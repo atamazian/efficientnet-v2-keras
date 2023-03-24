@@ -316,6 +316,7 @@ def EfficientNetV2(
     pooling=None,
     classes: int = 1000,
     classifier_activation: Union[str, Callable] = "softmax",
+    fsr: bool = True
 ):
     """Instantiate the EfficientNetV2 architecture using given provided parameters.
 
@@ -356,6 +357,7 @@ def EfficientNetV2(
     :param classifier_activation: A `str` or callable. The activation function to use
         on the "top" layer. Ignored unless `include_top=True`. Set
         `classifier_activation=None` to return the logits of the "top" layer.
+    :param fsr: reduce stride of the stem block if set to `True`.
 
     Returns:
         A `tf.keras.Model` instance.
@@ -455,7 +457,7 @@ def EfficientNetV2(
     x = tf.keras.layers.Conv2D(
         filters=round_filters(stem_filters),
         kernel_size=3,
-        strides=2,
+        strides=1 if fsr else 2,
         kernel_initializer=CONV_KERNEL_INITIALIZER,
         padding="same",
         use_bias=False,
@@ -576,6 +578,7 @@ def EfficientNetV2S(
     pooling=None,
     classes=1000,
     classifier_activation="softmax",
+    fsr=True,
     **kwargs,
 ):
     """Create EfficientNetV2 S variant."""
@@ -591,6 +594,7 @@ def EfficientNetV2S(
         pooling=pooling,
         classes=classes,
         classifier_activation=classifier_activation,
+        fsr=fsr,
         **kwargs,
     )
 
@@ -603,6 +607,7 @@ def EfficientNetV2M(
     pooling=None,
     classes=1000,
     classifier_activation="softmax",
+    fsr=True,
     **kwargs,
 ):
     """Create EfficientNetV2 M variant."""
@@ -618,6 +623,7 @@ def EfficientNetV2M(
         pooling=pooling,
         classes=classes,
         classifier_activation=classifier_activation,
+        fsr=fsr,
         **kwargs,
     )
 
@@ -630,6 +636,7 @@ def EfficientNetV2L(
     pooling=None,
     classes=1000,
     classifier_activation="softmax",
+    fsr=True,
     **kwargs,
 ):
     """Create EfficientNetV2 L variant."""
@@ -645,6 +652,7 @@ def EfficientNetV2L(
         pooling=pooling,
         classes=classes,
         classifier_activation=classifier_activation,
+        fsr=fsr,
         **kwargs,
     )
 
@@ -657,6 +665,7 @@ def EfficientNetV2B0(
     pooling=None,
     classes=1000,
     classifier_activation="softmax",
+    fsr=True,
     **kwargs,
 ):
     """Create EfficientNetV2 B0 variant."""
@@ -672,6 +681,7 @@ def EfficientNetV2B0(
         pooling=pooling,
         classes=classes,
         classifier_activation=classifier_activation,
+        fsr=fsr,
         **kwargs,
     )
 
@@ -684,6 +694,7 @@ def EfficientNetV2B1(
     pooling=None,
     classes=1000,
     classifier_activation="softmax",
+    fsr=True,
     **kwargs,
 ):
     """Create EfficientNetV2 B1 variant."""
@@ -699,6 +710,7 @@ def EfficientNetV2B1(
         pooling=pooling,
         classes=classes,
         classifier_activation=classifier_activation,
+        fsr=fsr,
         **kwargs,
     )
 
@@ -711,6 +723,7 @@ def EfficientNetV2B2(
     pooling=None,
     classes=1000,
     classifier_activation="softmax",
+    fsr=True,
     **kwargs,
 ):
     """Create EfficientNetV2 B2 variant."""
@@ -726,6 +739,7 @@ def EfficientNetV2B2(
         pooling=pooling,
         classes=classes,
         classifier_activation=classifier_activation,
+        fsr=fsr,
         **kwargs,
     )
 
@@ -738,6 +752,7 @@ def EfficientNetV2B3(
     pooling=None,
     classes=1000,
     classifier_activation="softmax",
+    fsr=True,
     **kwargs,
 ):
     """Create EfficientNetV2 B3 variant."""
@@ -753,6 +768,7 @@ def EfficientNetV2B3(
         pooling=pooling,
         classes=classes,
         classifier_activation=classifier_activation,
+        fsr=fsr,
         **kwargs,
     )
 
@@ -765,6 +781,7 @@ def EfficientNetV2XL(
     pooling=None,
     classes=1000,
     classifier_activation="softmax",
+    fsr=True,
     **kwargs,
 ):
     """Create EfficientNetV2 XL variant."""
@@ -786,6 +803,7 @@ def EfficientNetV2XL(
         pooling=pooling,
         classes=classes,
         classifier_activation=classifier_activation,
+        fsr=fsr,
         **kwargs,
     )
 
